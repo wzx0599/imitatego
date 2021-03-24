@@ -1,5 +1,5 @@
-#ifndef UTIL_INCLUDE_COUT_VECTOR_REIMPL_H
-#define UTIL_INCLUDE_COUT_VECTOR_REIMPL_H
+#ifndef VEC_OUT_H
+#define VEC_OUT_H
 
 #include <iostream>
 #include <vector>
@@ -14,4 +14,4 @@ std::ostream &operator<<(std::ostream &os, std::vector<T> vec)
     return os;
 }
 
-#endif // !UTIL_INCLUDE_COUT_VECTOR_REIMPL_H
+#endif // VEC_OUT_H
