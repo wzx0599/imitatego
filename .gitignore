@@ -1,6 +1,0 @@
-/.vscode
-/build
-
-.DS_Store
-.gitignore
-CMakeLists.txt
