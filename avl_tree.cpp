@@ -195,7 +195,7 @@ TreeNode* AVLTree::insert(TreeNode *node, int elem)
 
     // 计算平衡因子，看是否需要进行调整
     int bf = balanceFactor(node);
-    // 根据得到的平衡因子进行调整
+    // 根据得到的平衡因子进行调整 一定要记住，左旋和右旋都是针对根节点的
     // 首先，考虑插入节点的位置，共有四种情况：
     // 1.左子树的左子树 根节点的BF=2  左子树的BF>0 RR 右旋
     // 2.左子树的右子树 根节点的BF=2  左子树的BF<0 LR 先左旋再右旋
@@ -225,6 +225,7 @@ TreeNode* AVLTree::insert(TreeNode *node, int elem)
         node->right = rightRotate(node->right);
         return leftRotate(node);
     }
+
     return node;
 }
 
@@ -275,21 +276,21 @@ TreeNode* AVLTree::remove(TreeNode *node, int elem)
         // https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
         else
         {
-            // TreeNode *mleft = node->left;
-            // while (mleft->right) mleft = mleft->right;
-            // mleft->left = remove(node->left, mleft->val);
-            // mleft->right = node->right;
-            // node->left = nullptr;
-            // node->right = nullptr;
-            // ret = mleft;
-
-            TreeNode *mright = node->right;
-            while (mright->left) mright = mright->left;
-            mright->right = remove(node->right, mright->val);
-            mright->left = node->left;
+            TreeNode *mleft = node->left;
+            while (mleft->right) mleft = mleft->right;
+            mleft->left = remove(node->left, mleft->val);
+            mleft->right = node->right;
             node->left = nullptr;
             node->right = nullptr;
-            ret = mright;
+            ret = mleft;
+
+            // TreeNode *mright = node->right;
+            // while (mright->left) mright = mright->left;
+            // mright->right = remove(node->right, mright->val);
+            // mright->left = node->left;
+            // node->left = nullptr;
+            // node->right = nullptr;
+            // ret = mright;
         }
     }
 
